@@ -14,4 +14,4 @@ Impromptu is a diary application where users can document their daily feelings. 
 
 ## ERD
 
-![](process-images/erd-impromput.png)
+![](process-images/erd-impromptu.png)
