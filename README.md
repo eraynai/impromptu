@@ -15,3 +15,11 @@ Impromptu is a web application where users can document their daily feelings.  T
 ## ERD
 
 [Link to ERD](https://lucid.app/lucidchart/invitations/accept/inv_1e09ddf6-1542-4239-bd2b-58db112d6ebe?viewport_loc=145%2C21%2C1579%2C835%2ClX5M2rYPdq7w)
+
+## MVP
+
+Deliver a working prototype where people can add text to a post and other users can comment on it.
+
+## Stretch Goal
+
+Give the ability for the user to add different media such as .mp3 and image files.
