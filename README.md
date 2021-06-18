@@ -2,7 +2,7 @@
 
 ## Description
 
-Impromptu is a diary application where users can document their daily feelings.  This helpful for people to look back and reflect on things that may ultimately help them to make better decisions in their life.
+Impromptu is a web application where users can document their daily feelings.  This app is helpful for people to reflect on things that may ultimately help them to make better decisions in their life. When users log in they have the ability to create or comment on other people's posts.
 
 ## Trello Board
 
