@@ -14,4 +14,4 @@ Impromptu is a diary application where users can document their daily feelings. 
 
 ## ERD
 
-![](process-images/erd-impromptu.png)
+[Link to ERD](https://lucid.app/lucidchart/invitations/accept/inv_1e09ddf6-1542-4239-bd2b-58db112d6ebe?viewport_loc=145%2C21%2C1579%2C835%2ClX5M2rYPdq7w)
