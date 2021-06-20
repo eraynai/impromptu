@@ -50,7 +50,7 @@ app.use('/users', usersRouter);
 app.get('/posts', async function (req, res){
   const entries = await Entry.find({});
   console.log(entries);
-  res.send('All posts will be here');
+  res.render('posts/index', { entries });
 })
 
 // catch 404 and forward to error handler
