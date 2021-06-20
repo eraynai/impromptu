@@ -10,7 +10,7 @@
     <h1>All Posts</h1>
     <ul>
         <% for(let entry of entries ) { %>
-            <li><%= entry.title %>, <%= entry.mood %></li>
+            <li><a href="/posts/<%= entry._id %>"><%= entry.title %></a></li>
         <% } %>
     </ul>
 </body>

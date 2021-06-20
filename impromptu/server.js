@@ -53,6 +53,17 @@ app.get('/posts', async function (req, res){
   res.render('posts/index', { entries });
 })
 
+
+app.get('posts/new', async function (req, res){
+
+});
+
+app.get('/posts/:id', async function (req, res){
+  const entry = await Entry.findById(req.params.id);
+  res.render('posts/show', { entry } );
+})
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
