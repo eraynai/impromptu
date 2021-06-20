@@ -14,13 +14,14 @@ db.on('connected', function () {
 	console.log(`Connected to MongoDB at ${db.host}:${db.port}`);
 });
 
-const d = new Entry({
+/* const d = new Entry({
     title: 'This is my first blog post',
     mood: 'sad',
     entry: 'This is just the beginning of something much bigger than myself',
-});
+}); */
 
-const ent = new EntryTitle({
+
+/* const ent = new EntryTitle({
     title: d.title,
     mood: d.mood,
 });
@@ -37,4 +38,28 @@ ent.save().then(ent => {
 })
 .catch(e => {
     console.log(e)
-})
+}) */
+
+const seedEntries = [
+    {
+        title: 'This is my first blog post',
+        mood: 'sad',
+        entry: 'This is just the beginning of something much bigger than myself',
+    },
+    {
+        title: 'This is my second blog post',
+        mood: 'sad',
+        entry: 'This is just the beginning of something much bigger than myself',
+    },
+    {
+        title: 'This is my third blog post',
+        mood: 'sad',
+        entry: 'This is just the beginning of something much bigger than myself',
+    }
+]
+
+Entry.insertMany(seedEntries).then(res => {
+    console.log(res)})
+    .catch(e => {
+        console.log(e);
+    })

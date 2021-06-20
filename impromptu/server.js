@@ -4,13 +4,25 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
-
+const Entry = require('./model/entry');
+const mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const passport = require('passport');
 
 
+mongoose.connect('mongodb://localhost/diaryEntries', {
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+	useCreateIndex: true,
+});
+
+const db = mongoose.connection;
+
+db.on('connected', function () {
+	console.log(`Connected to MongoDB at ${db.host}:${db.port}`);
+});
 
 
 var app = express();
@@ -34,6 +46,12 @@ app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+app.get('/posts', async function (req, res){
+  const entries = await Entry.find({});
+  console.log(entries);
+  res.send('All posts will be here');
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
