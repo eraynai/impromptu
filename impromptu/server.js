@@ -6,6 +6,8 @@ var logger = require('morgan');
 var session = require('express-session');
 const Entry = require('./model/entry');
 const mongoose = require('mongoose');
+const methodOverride = require('method-override');
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -41,6 +43,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
 }));
+app.use(methodOverride('_method'));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -57,14 +60,24 @@ app.get('/posts/newstuff', function (req, res){
   res.render('posts/new')
 });
 
-app.post('/posts', function (req, res){
-  console.log(req.body);
-  res.send('making your post');
+app.post('/posts', async function (req, res){
+  const newEntry = new Entry(req.body);
+  await newEntry.save();
+  res.redirect('/posts');
 })
 
 app.get('/posts/:id', async function (req, res){
   const entry = await Entry.findById(req.params.id);
   res.render('posts/show', { entry } );
+})
+
+app.get('/posts/:id/edit', async function (req, res){
+  const entry = await Entry.findById(req.params.id);
+  res.render('posts/edit', { entry });
+});
+
+app.put('/posts/:id', async function (req, res){
+  res.send('PUT!!!');
 })
 
 
