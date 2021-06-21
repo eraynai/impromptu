@@ -53,10 +53,14 @@ app.get('/posts', async function (req, res){
   res.render('posts/index', { entries });
 })
 
-
-app.get('posts/new', async function (req, res){
-
+app.get('/posts/newstuff', function (req, res){
+  res.render('posts/new')
 });
+
+app.post('/posts', function (req, res){
+  console.log(req.body);
+  res.send('making your post');
+})
 
 app.get('/posts/:id', async function (req, res){
   const entry = await Entry.findById(req.params.id);
