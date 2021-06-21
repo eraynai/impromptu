@@ -4,8 +4,12 @@ const Schema = mongoose.Schema;
 const entrySchema = new Schema({
     date: { type: Date },
     title: { type: String, required: true },
-    mood: { type: String, lowercase: true, enum: ['glad', 'sad', 'mad'] },
+    mood: { type: String,  enum: ['Glad', 'Sad', 'Mad'] },
     entry: { type: String, required: true },
+    image: {
+        url: String,
+        filename: String,
+    }
 }, {
     timestamps: true,
 });

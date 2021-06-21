@@ -4,27 +4,20 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
+require('dotenv').config()
 const Entry = require('./model/entry');
-const mongoose = require('mongoose');
 const methodOverride = require('method-override');
-
+const multer = require('multer');
+const { storage } = require('./cloudinary');
+console.log({ storage });
+const upload = multer({ storage });
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const passport = require('passport');
 
 
-mongoose.connect('mongodb://localhost/diaryEntries', {
-	useNewUrlParser: true,
-	useUnifiedTopology: true,
-	useCreateIndex: true,
-});
-
-const db = mongoose.connection;
-
-db.on('connected', function () {
-	console.log(`Connected to MongoDB at ${db.host}:${db.port}`);
-});
+require('./config/database'); 
 
 
 var app = express();
@@ -50,21 +43,29 @@ app.use(passport.session());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+const categories = ['Glad', 'Sad', 'Mad'];
+
 app.get('/posts', async function (req, res){
   const entries = await Entry.find({});
-  console.log(entries);
   res.render('posts/index', { entries });
 })
 
 app.get('/posts/newstuff', function (req, res){
-  res.render('posts/new')
+  res.render('posts/new', { categories } )
 });
 
-app.post('/posts', async function (req, res){
+app.post('/posts', upload.single('image'), async function (req, res){
   const newEntry = new Entry(req.body);
+  newEntry.image.url = req.file.path;
+  newEntry.image.imageName = req.file.filename;
   await newEntry.save();
   res.redirect('/posts');
 })
+
+/* app.post('/posts', upload.single('image'), function (req, res){
+  console.log(req.body, req.file);
+  res.send('it worked');
+}); */
 
 app.get('/posts/:id', async function (req, res){
   const entry = await Entry.findById(req.params.id);
@@ -73,11 +74,17 @@ app.get('/posts/:id', async function (req, res){
 
 app.get('/posts/:id/edit', async function (req, res){
   const entry = await Entry.findById(req.params.id);
-  res.render('posts/edit', { entry });
+  res.render('posts/edit', { entry, categories });
 });
 
 app.put('/posts/:id', async function (req, res){
-  res.send('PUT!!!');
+  await Entry.findByIdAndUpdate(req.params.id, req.body, { runValidators: true, new: true, useFindAndModify: false });
+  res.redirect('/posts');
+})
+
+app.delete('/posts/:id', async function(req, res){
+  await Entry.findByIdAndDelete(req.params.id);
+  res.redirect('/posts');
 })
 
 

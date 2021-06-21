@@ -9,12 +9,14 @@
 <body>
     <form>
         <h2><%= entry.mood %></h2>
-        <input />
         <h2><%= entry.title %></h2>
-        <input />
         <h2><%= entry.entry %></h2>
-        <input />
     </form>
+    <img src="<%= entry.image.url %>">
     <a href="/posts">Back</a>
+    <a href="/posts/<%= entry._id %>/edit">Edit</a>
+    <form action="/posts/<%= entry._id %>?_method=DELETE" method="POST">
+        <button>Delete</button>
+    </form>
 </body>
 </html>
