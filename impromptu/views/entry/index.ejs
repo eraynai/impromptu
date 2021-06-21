@@ -10,9 +10,9 @@
     <h1>All Posts</h1>
     <ul>
         <% for(let entry of entries ) { %>
-            <li><a href="/posts/<%= entry._id %>"><%= entry.title %></a></li>
+            <li><a href="/entries/<%= entry._id %>"><%= entry.title %></a></li>
         <% } %>
     </ul>
-    <a href="/posts/newstuff">Create New Post</a>
+    <a href="/entries/new">Create New Post</a>
 </body>
 </html>

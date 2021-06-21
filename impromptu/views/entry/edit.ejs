@@ -4,23 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add a Post</title>
+    <title>Edit a Post</title>
 </head>
 <body>
-    <form action="/posts" method="POST" enctype="multipart/form-data"
-    > 
+    <form action="/entries/<%= entry._id %>?_method=PUT" method="POST"> 
         <label for="mood">What's Your Mood</label>
         <select name="mood" id="mood">
             <% for(let category of categories) { %>
-            <option value="<%= category %>"><%= category %></option>
+                <option value="<%= category %>" <%= entry.mood === category ? 'selected' : ''%>><%= category %></option>
             <% } %>
         </select>
         <label for="title">Post Title</label>
-        <input type="text" name="title" id="title">
+        <input type="text" name="title" id="title" value="<%= entry.title %>">
         <label for="entry">What Are Your Thoughts</label>
-        <input type="text" name="entry" id="entry">
+        <input type="text" name="entry" id="entry" value="<%= entry.entry %>">
         <button>Submit</button>
-        <input type="file" name="image">
     </form>
 </body>
-</html>
+</html> 

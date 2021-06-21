@@ -13,9 +13,9 @@
         <h2><%= entry.entry %></h2>
     </form>
     <img src="<%= entry.image.url %>">
-    <a href="/posts">Back</a>
-    <a href="/posts/<%= entry._id %>/edit">Edit</a>
-    <form action="/posts/<%= entry._id %>?_method=DELETE" method="POST">
+    <a href="/entries">Back</a>
+    <a href="/entries/<%= entry._id %>/edit">Edit</a>
+    <form action="/entries/<%= entry._id %>?_method=DELETE" method="POST">
         <button>Delete</button>
     </form>
 </body>

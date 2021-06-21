@@ -4,20 +4,18 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
-require('dotenv').config()
-const Entry = require('./model/entry');
+const passport = require('passport');
+require('dotenv').config();
 const methodOverride = require('method-override');
-const multer = require('multer');
-const { storage } = require('./cloudinary');
-console.log({ storage });
-const upload = multer({ storage });
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-const passport = require('passport');
+const entryRouter = require('./routes/entry');
 
 
 require('./config/database'); 
+require('./config/passport');
 
 
 var app = express();
@@ -36,57 +34,13 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
 }));
-app.use(methodOverride('_method'));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(methodOverride('_method'));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
-const categories = ['Glad', 'Sad', 'Mad'];
-
-app.get('/posts', async function (req, res){
-  const entries = await Entry.find({});
-  res.render('posts/index', { entries });
-})
-
-app.get('/posts/newstuff', function (req, res){
-  res.render('posts/new', { categories } )
-});
-
-app.post('/posts', upload.single('image'), async function (req, res){
-  const newEntry = new Entry(req.body);
-  newEntry.image.url = req.file.path;
-  newEntry.image.imageName = req.file.filename;
-  await newEntry.save();
-  res.redirect('/posts');
-})
-
-/* app.post('/posts', upload.single('image'), function (req, res){
-  console.log(req.body, req.file);
-  res.send('it worked');
-}); */
-
-app.get('/posts/:id', async function (req, res){
-  const entry = await Entry.findById(req.params.id);
-  res.render('posts/show', { entry } );
-})
-
-app.get('/posts/:id/edit', async function (req, res){
-  const entry = await Entry.findById(req.params.id);
-  res.render('posts/edit', { entry, categories });
-});
-
-app.put('/posts/:id', async function (req, res){
-  await Entry.findByIdAndUpdate(req.params.id, req.body, { runValidators: true, new: true, useFindAndModify: false });
-  res.redirect('/posts');
-})
-
-app.delete('/posts/:id', async function(req, res){
-  await Entry.findByIdAndDelete(req.params.id);
-  res.redirect('/posts');
-})
-
+app.use('/entries', entryRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
