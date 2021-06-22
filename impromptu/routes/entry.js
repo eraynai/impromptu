@@ -10,7 +10,7 @@ router.get('/new', entryCtrl.new);
 router.post('/', upload.single('image'), entryCtrl.create);
 router.get('/:id', entryCtrl.show);
 router.get('/:id/edit', entryCtrl.edit);
-router.put('/:id', entryCtrl.update);
+router.put('/:id', upload.single('image'), entryCtrl.update);
 router.delete('/:id', entryCtrl.delete);
 
 
