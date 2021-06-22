@@ -8,10 +8,10 @@ const passport = require('passport');
 require('dotenv').config();
 const methodOverride = require('method-override');
 
-
-var indexRouter = require('./routes/index');
+var profileRouter = require('./routes/profile');
 var usersRouter = require('./routes/users');
 const entryRouter = require('./routes/entry');
+const authRouter = require('./routes/auth');
 
 
 require('./config/database'); 
@@ -38,7 +38,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(methodOverride('_method'));
 
-app.use('/', indexRouter);
+
+app.use('/', authRouter);
+app.use('/profile', profileRouter);
 app.use('/users', usersRouter);
 app.use('/entries', entryRouter);
 

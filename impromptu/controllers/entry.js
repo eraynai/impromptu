@@ -47,4 +47,4 @@ module.exports = {
     edit,
     update,
     delete: deleteEntry,
-}
+} 
