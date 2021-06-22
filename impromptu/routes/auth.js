@@ -21,7 +21,8 @@ router.get('/auth/google', passport.authenticate('google', {
 //auth log out
 router.get('/auth/logout', function(req, res){
   //handle with passport
-  res.send('logging out with google');
+  req.logout();
+  res.redirect('/auth/login');
 });
 
 
@@ -30,7 +31,7 @@ router.get('/oauth2callback', passport.authenticate(
   'google',
   {
     successRedirect: '/profile',
-    failureRedirect: '/auth/login',
+    failureRedirect: '/profile',
   },
 ));
   

@@ -8,6 +8,7 @@ passport.use(new GoogleStrategy({
     clientSecret: process.env.GOOGLE_SECRET,
     callbackURL: process.env.GOOGLE_CALLBACK
   }, function (accessToken, refreshToken, profile, cb) {
+    console.log('This is the propery I want to access', profile._json.given_name);
     User.findOne({ 'googleId': profile.id }, function(err, user) {
       if (err) return cb(err);
       if (user) {
@@ -17,7 +18,8 @@ passport.use(new GoogleStrategy({
         var newUser = new User({
           name: profile.displayName,
           email: profile.emails[0].value,
-          googleId: profile.id
+          googleId: profile.id,
+          givenName: profile._json.given_name,
         });
         newUser.save(function(err) {
           if (err) return cb(err);
