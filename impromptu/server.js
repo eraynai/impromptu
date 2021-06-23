@@ -1,12 +1,22 @@
 var express = require('express');
-var createError = require('http-errors');
 var path = require('path');
-var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cookieParser = require('cookie-parser');
 var session = require('express-session');
 const passport = require('passport');
-require('dotenv').config();
+var createError = require('http-errors');
 const methodOverride = require('method-override');
+
+// load the env vars
+require('dotenv').config();
+
+// create the express app
+var app = express();
+
+// Connect to MongoDB with mongoose 
+require('./config/database'); 
+require('./config/passport');
+
 
 var profileRouter = require('./routes/profile');
 var usersRouter = require('./routes/users');
@@ -14,11 +24,7 @@ const entryRouter = require('./routes/entry');
 const authRouter = require('./routes/auth');
 
 
-require('./config/database'); 
-require('./config/passport');
 
-
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
