@@ -1,5 +1,5 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css";
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Kirang+Haerang&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Raleway+Dots&display=swap');
 
 body {
   font-family: 'Comfortaa', cursive;
@@ -16,15 +16,19 @@ body {
 }
 
 .title {
-  font-family: 'Kirang Haerang', cursive;
-  font-size: 6rem;
+  font-family: 'Raleway Dots', cursive;
+  font-size: 5rem;
   color: #fff;
 }
 
 .subtitle {
   color: #fff;
-  font-size: 3rem;
+  font-size: 2rem;
   text-align: center;
+}
+
+.container {
+  margin-bottom: 5rem;
 }
 
 @media (max-width: 1024px) { .hero { background: #12192B url('../images/bg_image-1024-01.svg') center / cover; } }
