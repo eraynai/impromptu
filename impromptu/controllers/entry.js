@@ -16,36 +16,25 @@ async function create (req, res){
     const newEntry = new Entry(req.body);
     newEntry.image.url = req.file.path;
     newEntry.image.filename = req.file.imageName;
-    const userQuery = await User.find({});
-    newEntry.userId = userQuery[0].googleId; 
     await newEntry.save();
     res.redirect('/entries'); 
 };
 
 async function show (req, res){
     const entry = await Entry.findById(req.params.id);
-    const users = await User.find({});
-    console.log('this is users',users);
-    console.log('this is entry', entry);
-    res.render('entry/show', { entry, users } );
+    res.render('entry/show', { entry } );
 };
 
   
-
 async function edit (req, res){
     const entry = await Entry.findById(req.params.id);
     res.render('entry/edit', { entry, categories });
 };
 
 async function update (req, res){
-    const updatedEntry = await Entry.findById(req.params.id);
-    updatedEntry.image.url = req.file.path;
-    updatedEntry.image.filename = req.file.imageName;
-    updatedEntry.entry = req.body.entry;
-    updatedEntry.title = req.body.title;
-    updatedEntry.mood = req.body.mood;
-    await updatedEntry.save();
-    res.redirect('/entries');
+    /* await Entry.findByIdAndUpdate(req.params.id, req.body, { runValidators: true, new: true, useFindAndModify: false });
+    res.redirect('/entries'); */
+    res.send('this working?');
   };
 
 async function deleteEntry (req, res){

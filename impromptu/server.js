@@ -1,63 +1,52 @@
-var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cookieParser = require('cookie-parser');
 var session = require('express-session');
-const passport = require('passport');
-require('dotenv').config();
-const methodOverride = require('method-override');
+var passport = require('passport');
 
+// load the env vars
+require('dotenv').config();
+
+// create the Express app
+var app = express();
+
+// connect to the MongoDB with mongoose
+require('./config/database');
+require('./config/passport');
+
+// require our routes
 var profileRouter = require('./routes/profile');
 var usersRouter = require('./routes/users');
 const entryRouter = require('./routes/entry');
 const authRouter = require('./routes/auth');
 
-
-require('./config/database'); 
-require('./config/passport');
-
-
-var app = express();
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
-  secret: 'Impromtu Rocks!',
+  secret: 'SEIRocks!',
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: true
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(methodOverride('_method'));
 
-
-app.use('/', authRouter);
+// mount all routes with appropriate base paths
 app.use('/profile', profileRouter);
 app.use('/users', usersRouter);
 app.use('/entries', entryRouter);
+app.use('/', authRouter);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
-
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+// invalid request, send 404 page
+app.use(function(req, res) {
+  res.status(404).send('Cant find that!');
 });
 
 module.exports = app;

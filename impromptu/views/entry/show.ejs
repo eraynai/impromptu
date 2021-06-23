@@ -15,16 +15,7 @@
     </form>
     <img src="<%= entry.image.url %>">
     <a href="/entries">Back</a>
-     
-    
-    <% for(let user of users) { %>
-        <% if(user.googleId === entry.userId) { %>   
-        <a class="appear" id="edit" href="/entries/<%= entry._id %>/edit">Edit</a>
-        <% break %>
-        <% } %>
-    <% } %>
-
-    <a class="disappear" id="edit" href="/entries/<%= entry._id %>/edit">Edit</a>
+    <a id="edit" href="/entries/<%= entry._id %>/edit">Edit</a>
     <form action="/entries/<%= entry._id %>?_method=DELETE" method="POST">
         <button id="button">Delete</button>
     </form>
