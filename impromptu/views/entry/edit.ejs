@@ -7,7 +7,7 @@
     <title>Edit a Post</title>
 </head>
 <body>
-    <form action="/entries/<%= entry._id %>?_method=PUT" method="POST"> 
+    <form action="/entries/<%= entry._id %>?_method=PUT" method="POST" enctype="multipart/form-data"> 
         <label for="mood">What's Your Mood</label>
         <select name="mood" id="mood">
             <% for(let category of categories) { %>
@@ -19,6 +19,7 @@
         <label for="entry">What Are Your Thoughts</label>
         <input type="text" name="entry" id="entry" value="<%= entry.entry %>">
         <button>Submit</button>
+        <input type="file" name="image">
     </form>
 </body>
 </html> 

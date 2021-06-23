@@ -30,7 +30,13 @@ async function edit (req, res){
 };
 
 async function update (req, res){
-    await Entry.findByIdAndUpdate(req.params.id, req.body, { runValidators: true, new: true, useFindAndModify: false });
+    const updatedEntry = await Entry.findById(req.params.id);
+    updatedEntry.image.url = req.file.path;
+    updatedEntry.image.filename = req.file.imageName;
+    updatedEntry.entry = req.body.entry;
+    updatedEntry.title = req.body.title;
+    updatedEntry.mood = req.body.mood;
+    await updatedEntry.save();
     res.redirect('/entries');
   };
 
