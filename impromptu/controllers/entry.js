@@ -3,15 +3,18 @@ const Entry = require('../model/entry');
 const categories = ['Glad', 'Sad', 'Mad'];
 
 async function index (req, res){
+    console.log('In all entries, do you see ', req.user);
     const entries = await Entry.find({});
     res.render('entry/index', { entries });
 };
 
 function newElements (req, res){
+    console.log('In new entry, do you see ', req.user);
     res.render('entry/new', { categories } )
   };
 
 async function create (req, res){
+    console.log('In create entry, do you see', req.user);
     const newEntry = new Entry(req.body);
     newEntry.image.url = req.file.path;
     newEntry.image.imageName = req.file.filename;
@@ -20,16 +23,19 @@ async function create (req, res){
 };
 
 async function show (req, res){
+    console.log('In create show single entry, do you see', req.user);
     const entry = await Entry.findById(req.params.id);
     res.render('entry/show', { entry } );
 };
 
 async function edit (req, res){
+    console.log('In edit entry, do you see', req.user);
     const entry = await Entry.findById(req.params.id);
     res.render('entry/edit', { entry, categories });
 };
 
 async function update (req, res){
+    console.log('In update entry, do you see', req.user);
     const updatedEntry = await Entry.findById(req.params.id);
     updatedEntry.image.url = req.file.path;
     updatedEntry.image.filename = req.file.imageName;
@@ -41,6 +47,7 @@ async function update (req, res){
   };
 
 async function deleteEntry (req, res){
+    console.log('In delete entry, do you see', req.user);
     await Entry.findByIdAndDelete(req.params.id);
     res.redirect('/entries');
 };

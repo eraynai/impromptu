@@ -33,7 +33,9 @@ router.get('/oauth2callback', passport.authenticate(
     successRedirect: '/profile',
     failureRedirect: '/profile',
   },
-));
+), function (req, res){
+  console.log('In the profile, do you see ', req.user);
+});
   
   
   module.exports = router;
