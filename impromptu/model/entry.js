@@ -9,7 +9,8 @@ const entrySchema = new Schema({
     image: {
         url: String,
         filename: String,
-    }
+    },
+    objectIdReference: {type: Schema.Types.ObjectId, ref: 'User'},
 }, {
     timestamps: true,
 });

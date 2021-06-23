@@ -14,19 +14,21 @@ function newElements (req, res){
   };
 
 async function create (req, res){
-    console.log('In create entry, do you see', req.user);
     const newEntry = new Entry(req.body);
     newEntry.image.url = req.file.path;
     newEntry.image.imageName = req.file.filename;
+    console.log('Do we have', req.user);
+    newEntry.objectIdReference = req.user.id;
     await newEntry.save();
+    console.log('After I create the new Entry', newEntry);
     res.redirect('/entries'); 
 };
 
-async function show (req, res){
+/* async function show (req, res){
     console.log('In create show single entry, do you see', req.user);
     const entry = await Entry.findById(req.params.id);
     res.render('entry/show', { entry } );
-};
+}; */
 
 async function edit (req, res){
     console.log('In edit entry, do you see', req.user);
@@ -56,7 +58,6 @@ module.exports = {
     index,
     new: newElements,
     create,
-    show,
     edit,
     update,
     delete: deleteEntry,
