@@ -17,14 +17,17 @@ async function create (req, res){
     newEntry.image.url = req.file.path;
     newEntry.image.filename = req.file.imageName;
     const userQuery = await User.find({});
-    console.log( userQuery[0].googleId );
+    newEntry.userId = userQuery[0].googleId; 
     await newEntry.save();
     res.redirect('/entries'); 
 };
 
 async function show (req, res){
     const entry = await Entry.findById(req.params.id);
-    res.render('entry/show', { entry } );
+    const users = await User.find({});
+    console.log('this is users',users);
+    console.log('this is entry', entry);
+    res.render('entry/show', { entry, users } );
 };
 
   

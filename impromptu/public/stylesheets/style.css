@@ -6,3 +6,11 @@ body {
 a {
   color: #00B7FF;
 }
+
+.appear {
+  display: block;
+}
+
+.disappear {
+  display: none;
+}

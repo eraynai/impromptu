@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
     <form>
@@ -14,9 +15,18 @@
     </form>
     <img src="<%= entry.image.url %>">
     <a href="/entries">Back</a>
-    <a href="/entries/<%= entry._id %>/edit">Edit</a>
+     
+    
+    <% for(let user of users) { %>
+        <% if(user.googleId === entry.userId) { %>   
+        <a class="appear" id="edit" href="/entries/<%= entry._id %>/edit">Edit</a>
+        <% break %>
+        <% } %>
+    <% } %>
+
+    <a class="disappear" id="edit" href="/entries/<%= entry._id %>/edit">Edit</a>
     <form action="/entries/<%= entry._id %>?_method=DELETE" method="POST">
-        <button>Delete</button>
+        <button id="button">Delete</button>
     </form>
 </body>
 </html>

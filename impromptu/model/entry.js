@@ -10,7 +10,8 @@ const entrySchema = new Schema({
         url: String,
         filename: String,
     },
-    userId: [ {type: Schema.Types.ObjectId, ref: 'User'} ],
+/*     userId: [ {type: Schema.Types.ObjectId, ref: 'User'} ],
+ */ userId: String ,
 }, {
     timestamps: true,
 });

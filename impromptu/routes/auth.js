@@ -11,6 +11,7 @@ router.get('/', function(req, res){
 //auth login
 router.get('/auth/login', function(req, res, next) {
   res.render('login');
+  console.log('this is req.user', req.user);
 });
 
 //auth with google
