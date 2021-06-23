@@ -17,6 +17,7 @@ var app = express();
 require('./config/database'); 
 require('./config/passport');
 
+// Require our routes
 
 var profileRouter = require('./routes/profile');
 var usersRouter = require('./routes/users');
@@ -24,17 +25,17 @@ const entryRouter = require('./routes/entry');
 const authRouter = require('./routes/auth');
 
 
-
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride('_method'));
 app.use(session({
   secret: 'Impromtu Rocks!',
   resave: false,
@@ -42,13 +43,12 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(methodOverride('_method'));
 
-
-app.use('/', authRouter);
+// Mount all routes with appropriate base paths
 app.use('/profile', profileRouter);
 app.use('/users', usersRouter);
 app.use('/entries', entryRouter);
+app.use('/', authRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
