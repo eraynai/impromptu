@@ -26,7 +26,7 @@ router.get('/auth/logout', function(req, res){
   //handle with passport
   console.log('this is req user', req.user);
   req.logout();
-  res.redirect('/auth/login');
+  res.redirect('/');
 });
 
 

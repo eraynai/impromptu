@@ -5,9 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
-    <h1>Welcome to your profile page <%= user.givenName %></h1>
-    <li><a href="/auth/logout">Logout</a></li>
+    <nav class="level">
+        <p class="level-item has-text-centered title-nav">
+            impromptu
+        </p>
+        <p class="level-item has-text-centered">
+          <a href="/auth/logout" class="link is-info">Log Out</a>
+        </p>
+    </nav>
+    <section class="section is-medium profile-page">
+        <h1 class="title">Welcome <%= user.givenName %>! We are very happy to see you</h1>
+        <h2 class="subtitle">
+            Start off your journey with by creating a new entry or reading other people's entries to get some inspiration.
+        </h2>
+        <div class="buttons">
+            <a href="/entries/new" class="button is-link is-medium is-rounded is-outlined">Create Entry</a>
+            <a href="/entries" class="button is-link is-medium is-rounded is-outlined">Read Other Entries</a>
+        </div>
+    </section>
 </body>
 </html>

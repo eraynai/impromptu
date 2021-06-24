@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single Entry</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+    <nav class="level">
+        <p class="level-item has-text-centered title-nav">
+            impromptu
+        </p>
+        <p class="level-item has-text-centered">
+          <a href="/auth/logout" class="link is-info">Log Out</a>
+        </p>
+    </nav>
+    <div class="container is-fluid">
+        <div class="notification">
+            <div class="postLayout">
+                <div>
+                    <h2><%= entry.createdAt.toLocaleDateString()%></h2>
+                    <h2>Mood: <%= entry.mood %></h2>
+                    <h2>Title: <%= entry.title %></h2>
+                    <h2><%= entry.entry %></h2>
+                </div>
+                <img src="<%= entry.image.url %>">
+            </div>
+        </div>
+    </div>
+    <form>
+        <h2><%= entry.mood %></h2>
+        <h2><%= entry.title %></h2>
+        <h2><%= entry.entry %></h2>
+    </form>
+    
+    <a href="/entries">Back</a>
+    <a href="/entries/<%= entry._id %>/edit">Edit</a>
+    <form action="/entries/<%= entry._id %>?_method=DELETE" method="POST">
+        <button>Delete</button>
+    </form>
+</body>
+</html>

@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "bulma-calendar": "^6.1.7",
     "cloudinary": "^1.26.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",

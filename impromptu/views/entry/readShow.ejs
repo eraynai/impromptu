@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
+    <div class="container is-fluid">
+        <div class="notification is-primary">
+          This container is <strong>fluid</strong>: it will have a 32px gap on either side, on any
+          viewport size.
+        </div>
+      </div>
     <form>
         <h2><%= entry.mood %></h2>
         <h2><%= entry.title %></h2>
@@ -15,9 +21,5 @@
     </form>
     <img src="<%= entry.image.url %>">
     <a href="/entries">Back</a>
-    <a id="edit" href="/entries/<%= entry._id %>/edit">Edit</a>
-    <form action="/entries/<%= entry._id %>?_method=DELETE" method="POST">
-        <button id="button">Delete</button>
-    </form>
 </body>
 </html>

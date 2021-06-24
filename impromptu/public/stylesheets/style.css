@@ -1,16 +1,108 @@
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css";
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Kirang+Haerang&family=Raleway+Dots&display=swap');
+
+html {
+  background: #12192B;
+}
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Comfortaa', cursive;
+ 
 }
 
-a {
-  color: #00B7FF;
+.new-form {
+  height: 100vh;
 }
 
-.appear {
+.textarea {
+  height: 40vh;
+}
+
+nav.level {
+  margin: 0;
+}
+
+.hero {
+  background: url('../images/bg_image-01.svg') center / cover;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+h1.title.hompage {
+    font-family: 'Kirang Haerang', cursive;
+    font-size: 5rem;
+    color: #fff;
+}
+
+.title-nav {
+  font-family: 'Kirang Haerang', cursive;
+  font-size: 3rem;
+  color: #fff;
+}
+
+p.subtitle.homepage {
+  color: #fff;
+  font-size: 2rem;
+  text-align: center;
+}
+
+
+.container {
+  margin-bottom: 5rem;
+}
+
+.navbar {
+  background-color: #12192B;
+}
+
+
+section.section.is-medium.profile-page {
+background: #F4AD4F;
+height: 100vh;
+}
+
+nav {
+  background: #8AD38D;
+}
+
+section.container.is-fluid {
+  background: #F4AD4F;
+  padding: 2rem;
+  height: 100vh;
+}
+
+p.subtitle.read {
+  margin-top: 1rem;
+}
+
+
+.postLayout {
+  display: flex;
+  justify-content: space-between;
+}
+.postLayout img {
+  width: 50%;
+}
+
+.tile {
+  align-items: stretch;
   display: block;
+  flex-basis: auto;
+  flex-grow: 0;
+  flex-shrink: 1;
+  min-height: -webkit-min-content;
+  min-height: -moz-min-content;
+  min-height: min-content;
+  flex-wrap: wrap;
 }
+ 
 
-.disappear {
-  display: none;
-}
+
+@media (max-width: 1024px) { .hero { background: #12192B url('../images/bg_image-1024-01.svg') center / cover; } }
+
+@media (max-width: 768px) { .hero { background: #12192B url('../images/bg_image-768-01.svg') center / cover; } }

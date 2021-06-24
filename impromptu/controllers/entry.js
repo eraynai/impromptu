@@ -3,6 +3,7 @@ const User = require('../model/user');
 
 const categories = ['Glad', 'Sad', 'Mad'];
 
+
 async function index (req, res){
     const entries = await Entry.find({});
     res.render('entry/index', { entries });
@@ -15,29 +16,42 @@ function newElements (req, res){
 async function create (req, res){
     const newEntry = new Entry(req.body);
     newEntry.image.url = req.file.path;
-    newEntry.image.filename = req.file.imageName;
+    newEntry.image.imageName = req.file.filename;
+    console.log('Do we have', req.user);
+    newEntry.objectIdReference = req.user.id;
+    newEntry.author = req.user.name;
     await newEntry.save();
+    console.log('After I create the new Entry', newEntry);
     res.redirect('/entries'); 
 };
 
-async function show (req, res){
+/* async function show (req, res){
+    console.log('In create show single entry, do you see', req.user);
     const entry = await Entry.findById(req.params.id);
     res.render('entry/show', { entry } );
-};
+}; */
 
   
 async function edit (req, res){
+    console.log('In edit entry, do you see', req.user);
     const entry = await Entry.findById(req.params.id);
     res.render('entry/edit', { entry, categories });
 };
 
 async function update (req, res){
-    /* await Entry.findByIdAndUpdate(req.params.id, req.body, { runValidators: true, new: true, useFindAndModify: false });
-    res.redirect('/entries'); */
-    res.send('this working?');
+    console.log('In update entry, do you see', req.user);
+    const updatedEntry = await Entry.findById(req.params.id);
+    updatedEntry.image.url = req.file.path;
+    updatedEntry.image.filename = req.file.imageName;
+    updatedEntry.entry = req.body.entry;
+    updatedEntry.title = req.body.title;
+    updatedEntry.mood = req.body.mood;
+    await updatedEntry.save();
+    res.redirect('/entries');
   };
 
 async function deleteEntry (req, res){
+    console.log('In delete entry, do you see', req.user);
     await Entry.findByIdAndDelete(req.params.id);
     res.redirect('/entries');
 };
@@ -46,7 +60,6 @@ module.exports = {
     index,
     new: newElements,
     create,
-    show,
     edit,
     update,
     delete: deleteEntry,
