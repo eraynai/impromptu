@@ -2,14 +2,13 @@ const Entry = require('../model/entry');
 
 const categories = ['Glad', 'Sad', 'Mad'];
 
+
 async function index (req, res){
-    console.log('In all entries, do you see ', req.user);
     const entries = await Entry.find({});
     res.render('entry/index', { entries });
 };
 
 function newElements (req, res){
-    console.log('In new entry, do you see ', req.user);
     res.render('entry/new', { categories } )
   };
 
@@ -19,6 +18,7 @@ async function create (req, res){
     newEntry.image.imageName = req.file.filename;
     console.log('Do we have', req.user);
     newEntry.objectIdReference = req.user.id;
+    newEntry.author = req.user.name;
     await newEntry.save();
     console.log('After I create the new Entry', newEntry);
     res.redirect('/entries'); 

@@ -22,7 +22,7 @@ router.get('/auth/google', passport.authenticate('google', {
 router.get('/auth/logout', function(req, res){
   //handle with passport
   req.logout();
-  res.redirect('/auth/login');
+  res.redirect('/');
 });
 
 

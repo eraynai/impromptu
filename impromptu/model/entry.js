@@ -3,9 +3,10 @@ const Schema = mongoose.Schema;
 
 const entrySchema = new Schema({
     date: { type: Date },
-    title: { type: String, required: true },
+    title: { type: String },
+    author: {type: String },
     mood: { type: String,  enum: ['Glad', 'Sad', 'Mad'] },
-    entry: { type: String, required: true },
+    entry: { type: String },
     image: {
         url: String,
         filename: String,

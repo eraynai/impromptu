@@ -1,24 +1,10 @@
 const Entry = require('../model/entry');
 const User = require('../model/user');
 
-
-/* const showCheck = async function (req, res, next){
-    const entry = await Entry.findById(req.params.id);
-    console.log('this is', req.user);
-    console.log('this is', entry);
-    if(entry.objectIdReference[0] !== req.user.id){
-        console.log('this is the req use id', req.user._id);
-        console.log('this is the entry.objectIdReference', entry.objectIdReference[0]);
-        console.log('are you seeing this')
-        res.render('entry/readShow', { entry } );
-    }else{
-        next();
-    }
-}
- */
 async function show (req, res){
     const entry = await Entry.findById(req.params.id);
-    console.log('this is the req use id outside', req.user._id);
+    console.log('this is the entry',entry);
+    console.log('this is the req use id outside', req.user.id);
     console.log('this is the entry.objectIdReference outside', entry.objectIdReference);
     if(entry.objectIdReference != req.user.id){
         console.log('this is the req use id inside', req.user.id);

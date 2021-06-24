@@ -5,14 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Posts</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
+    <nav class="level">
+        <p class="level-item has-text-centered title-nav">
+            impromptu
+        </p>
+        <p class="level-item has-text-centered">
+          <a href="/auth/logout" class="link is-info">Log Out</a>
+        </p>
+    </nav>
     <h1>All Posts</h1>
-    <ul>
-        <% for(let entry of entries ) { %>
-            <li><a href="/entries/<%= entry._id %>"><%= entry.title %></a></li>
-        <% } %>
-    </ul>
-    <a href="/entries/new">Create New Post</a>
+    <div class="tile is-ancestor">
+        <div class="tile is-vertical">
+            <div class="tile">
+                <% for(let entry of entries ) { %>
+                <div class="tile is-parent is-vertical">
+                    <article class="tile is-child notification is-warning">
+                        <p class="subtitle"><%= entry.createdAt.toLocaleDateString()%></p>
+                        <p class="title"><%= entry.title %></p>
+                        <figure class="image is-4by3">
+                            <img src="<%= entry.image.url %>">
+                        </figure>
+                        <p class="subtitle read"><a href="/entries/<%= entry._id %>">Click to Read</a></p>
+                    </article>
+                </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
