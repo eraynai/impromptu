@@ -1,4 +1,5 @@
 const Entry = require('../model/entry');
+const User = require('../model/user');
 
 const categories = ['Glad', 'Sad', 'Mad'];
 
@@ -30,6 +31,7 @@ async function create (req, res){
     res.render('entry/show', { entry } );
 }; */
 
+  
 async function edit (req, res){
     console.log('In edit entry, do you see', req.user);
     const entry = await Entry.findById(req.params.id);
