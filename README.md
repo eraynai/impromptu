@@ -10,6 +10,15 @@ Impromptu is a web application where users can document their daily feelings.  T
 ![](process-images/screenshot_2.png)
 ![](process-images/screenshot_3.png)
 
+## Technologies Used
+
+* Node.js
+* Express
+* Mongoose
+* OAuth Authentication
+* Bulma
+
+
 ## Trello Board
 
 [Link to To Trello Board](https://trello.com/b/q4N2t8xR/build-app)
