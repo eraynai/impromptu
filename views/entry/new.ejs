@@ -18,99 +18,98 @@
         </p>
     </nav>
     <section class="container is-fluid">
-    <form action="/entries" method="POST" enctype="multipart/form-data"
-    >
-    <div class="field is-horizontal">
-        <div class="field-label is-normal">
-            <label for="date">Date</label>
-        </div>
-        <div class="field-body">
-            <div class="field">
-                <div class="control">
-                    <input id="date" type="datetime-local" name="date"/>
+        <form action="/entries" method="POST" enctype="multipart/form-data">
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label for="date">Date</label>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="field is-horizontal">
-        <div class="field-label is-normal">
-            <label for="mood">What's Your Mood</label>
-        </div>
-        <div class="field-body">
-            <div class="field is-narrow">
-                <div class="control">
-                    <div class="select is-fullwidth">
-                        <select name="mood" id="mood">
-                            <% for(let category of categories) { %>
-                            <option value="<%= category %>"><%= category %></option>
-                            <% } %>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-        <div class="field is-horizontal">
-            <div class="field-label is-normal">
-                <label for="title">Post Title</label>
-            </div>
-            <div class="field-body">
-                <div class="field">
-                    <div class="control">
-                        <input type="text" name="title" id="title">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="field is-horizontal">
-            <div class="field-label is-normal">
-                <label for="entry">What Are Your Thoughts</label>
-            </div>
-            <div class="field-body">
-                <div class="field">
-                    <div class="control">
-                        <textarea class="textarea" type="text" name="entry" id="entry"></textarea>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="field is-horizontal">
-            <div class="field-label is-normal">
-                <label for="entry">Upload An Image</label>
-            </div>
-            <div class="field-body">
-                <div class="field">
-                    <div class="control">
-                        <div class="file">
-                            <label class="file-label">
-                              <input class="file-input" type="file" name="image">
-                              <span class="file-cta">
-                                <span class="file-icon">
-                                  <i class="fas fa-upload"></i>
-                                </span>
-                                <span class="file-label">
-                                  Choose a file…
-                                </span>
-                              </span>
-                            </label>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input id="date" type="datetime-local" name="date"/>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="field is-horizontal">
-            <div class="field-label">
-                <!-- left for empty spacing -->
-            </div>
-            <div class="field-body">
-                <div class="field">
-                    <div class="control">
-                        <button class="button is-primary">Submit</button>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label for="mood">What's Your Mood</label>
+                </div>
+                <div class="field-body">
+                    <div class="field is-narrow">
+                        <div class="control">
+                            <div class="select is-fullwidth">
+                                <select name="mood" id="mood">
+                                    <% for(let category of categories) { %>
+                                    <option value="<%= category %>"><%= category %></option>
+                                    <% } %>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </form>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label for="title">Entry Title</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input type="text" name="title" id="title">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label for="entry">What Are Your Thoughts</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <textarea class="textarea" type="text" name="entry" id="entry"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label for="entry">Upload An Image</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <div class="file">
+                                <label class="file-label">
+                                    <input class="file-input" type="file" name="image">
+                                    <span class="file-cta">
+                                        <span class="file-icon">
+                                            <i class="fas fa-upload"></i>
+                                        </span>
+                                        <span class="file-label">
+                                            Choose a file…
+                                        </span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label">
+                    <!-- left for empty spacing -->
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <button class="button is-primary">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     </section>
 </body>
-</html>
+</htm   l>

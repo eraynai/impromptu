@@ -24,16 +24,8 @@ async function create (req, res){
     console.log('After I create the new Entry', newEntry);
     res.redirect('/entries'); 
 };
-
-/* async function show (req, res){
-    console.log('In create show single entry, do you see', req.user);
-    const entry = await Entry.findById(req.params.id);
-    res.render('entry/show', { entry } );
-}; */
-
   
 async function edit (req, res){
-    console.log('In edit entry, do you see', req.user);
     const entry = await Entry.findById(req.params.id);
     res.render('entry/edit', { entry, categories });
 };
@@ -43,6 +35,7 @@ async function update (req, res){
     const updatedEntry = await Entry.findById(req.params.id);
     updatedEntry.image.url = req.file.path;
     updatedEntry.image.filename = req.file.imageName;
+    updatedEntry.date = req.body.date;
     updatedEntry.entry = req.body.entry;
     updatedEntry.title = req.body.title;
     updatedEntry.mood = req.body.mood;

@@ -5,21 +5,112 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit a Post</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
-<body>
+<body class="new-form">
+    <nav class="level">
+        <p class="level-item has-text-centered title-nav">
+            impromptu
+        </p>
+        <p class="level-item has-text-centered">
+          <a href="/auth/logout" class="link is-info">Log Out</a>
+        </p>
+    </nav>
     <form action="/entries/<%= entry._id %>?_method=PUT" method="POST" enctype="multipart/form-data"> 
-        <label for="mood">What's Your Mood</label>
-        <select name="mood" id="mood">
-            <% for(let category of categories) { %>
-                <option value="<%= category %>" <%= entry.mood === category ? 'selected' : ''%>><%= category %></option>
-            <% } %>
-        </select>
-        <label for="title">Post Title</label>
-        <input type="text" name="title" id="title" value="<%= entry.title %>">
-        <label for="entry">What Are Your Thoughts</label>
-        <input type="text" name="entry" id="entry" value="<%= entry.entry %>">
-        <button>Submit</button>
-        <input type="file" name="image">
+        <section class="container is-fluid">
+            <form action="/entries" method="POST" enctype="multipart/form-data">
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label for="date">Date</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <input id="date" type="datetime-local" name="date" value="<%= entry.date %>">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label for="mood">What's Your Mood</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field is-narrow">
+                            <div class="control">
+                                <div class="select is-fullwidth">
+                                    <select name="mood" id="mood">
+                                        <% for(let category of categories) { %>
+                                            <option value="<%= category %>" <%= entry.mood === category ? 'selected' : ''%>><%= category %></option>
+                                        <% } %>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label for="title">Entry Title</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <input type="text" name="title" id="title" value="<%= entry.title %>">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label for="entry">What Are Your Thoughts</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <textarea class="textarea" type="text" name="entry" id="entry"><%= entry.entry %></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label for="entry">Upload An Image</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <div class="file">
+                                    <label class="file-label">
+                                        <input class="file-input" type="file" name="image">
+                                        <span class="file-cta">
+                                            <span class="file-icon">
+                                                <i class="fas fa-upload"></i>
+                                            </span>
+                                            <span class="file-label">
+                                                Choose a file…
+                                            </span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                        <!-- left for empty spacing -->
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <button class="button is-primary">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
     </form>
 </body>
 </html> 

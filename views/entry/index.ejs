@@ -16,7 +16,9 @@
           <a href="/auth/logout" class="link is-info">Log Out</a>
         </p>
     </nav>
-    <h1>All Posts</h1>
+    <section class="section">
+        <h1 class="title all-entries">All Entries</h1>
+      </section>
     <div class="tile is-ancestor">
         <div class="tile is-vertical">
             <div class="tile">
@@ -25,7 +27,8 @@
                     <article class="tile is-child notification is-warning">
                         <p class="subtitle"><%= entry.createdAt.toLocaleDateString()%></p>
                         <p class="title"><%= entry.title %></p>
-                        <figure class="image is-4by3">
+                        <p class="subtitle">By: <%= entry.author %></p>
+                        <figure class="image">
                             <img src="<%= entry.image.url %>">
                         </figure>
                         <p class="subtitle read"><a href="/entries/<%= entry._id %>">Click to Read</a></p>
@@ -34,6 +37,9 @@
                 <% } %>
             </div>
         </div>
+    </div>
+    <div class="buttons all-entries">
+        <a href="/entries/new" class="button is-link is-medium is-rounded is-outlined">Create New Entry</a>
     </div>
 </body>
 </html>
