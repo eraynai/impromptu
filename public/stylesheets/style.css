@@ -143,10 +143,14 @@ figure.image{
 .title.profile-page, .subtitle.profile-page {
   text-align: center;
   color: #ffffff;
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
-
+.subtitle.all-entries {
+  color: #fff;
+  margin-left: 2rem;
+  font-weight: bold;
+}
 
 
 @media (max-width: 1024px) { .hero { background: #12192B url('../images/bg_image-1024-01.svg') center / cover; } }

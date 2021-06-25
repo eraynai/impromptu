@@ -29,6 +29,9 @@
         </h2>
         <div class="tile is-ancestor">
             <div class="tile is-vertical">
+                <h2 class="subtitle all-entries">
+                    Your Current Entries:
+                </h2>
                 <div class="tile">
                     <% for(let entries of entry ) { %>
                     <div class="tile is-parent is-vertical">
@@ -48,7 +51,7 @@
         </div>
         <div class="buttons">
             <a href="/entries/new" class="button is-link is-medium is-rounded is-outlined">Create New Entry</a>
-            <a href="/entries" class="button is-link is-medium is-rounded is-outlined">Read Other Entries</a>
+            <a href="/entries" class="button is-link is-medium is-rounded is-outlined">Read All Entries</a>
         </div>
     </section>
 </body>
