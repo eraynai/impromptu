@@ -16,29 +16,29 @@
           <a href="/auth/logout" class="link is-info">Log Out</a>
         </p>
     </nav>
+    
     <div class="container is-fluid">
+        <div class="edit-buttons">
+            <a class="button is-link" href="/entries">Back</a>
+            <a class="button is-warning" href="/entries/<%= entry._id %>/edit">Edit</a>
+            <form action="/entries/<%= entry._id %>?_method=DELETE" method="POST">
+                <button class="button is-danger">Delete</button>
+            </form>
+        </div>
         <div class="notification">
             <div class="postLayout">
-                <div>
+                
+                <div class="entryContent">
                     <h2><%= entry.createdAt.toLocaleDateString()%></h2>
-                    <h2>Mood: <%= entry.mood %></h2>
-                    <h2>Title: <%= entry.title %></h2>
-                    <h2><%= entry.entry %></h2>
+                    <h2>How are you feeling?: <%= entry.mood %></h2>
+                    <h2>What's the Title of this Entry: <%= entry.title %></h2>
+                    <br>
+                    <br>
+                    <p><%= entry.entry %></p>
                 </div>
                 <img src="<%= entry.image.url %>">
             </div>
         </div>
     </div>
-    <form>
-        <h2><%= entry.mood %></h2>
-        <h2><%= entry.title %></h2>
-        <h2><%= entry.entry %></h2>
-    </form>
-    
-    <a href="/entries">Back</a>
-    <a href="/entries/<%= entry._id %>/edit">Edit</a>
-    <form action="/entries/<%= entry._id %>?_method=DELETE" method="POST">
-        <button>Delete</button>
-    </form>
 </body>
 </html>

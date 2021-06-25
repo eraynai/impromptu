@@ -85,6 +85,23 @@ p.subtitle.read {
   display: flex;
   justify-content: space-between;
 }
+
+.entryContent {
+  font-size: 2rem;
+}
+
+.entryContent h2 {
+  font-weight: bold;
+}
+
+.edit-buttons {
+  padding: 1rem 0 1rem 0;
+}
+
+.edit-buttons a {
+  margin-right: 1rem;
+}
+
 .postLayout img {
   width: 50%;
 }
@@ -112,6 +129,10 @@ figure.image{
 
 .buttons.all-entries {
   margin-left: 3rem;
+}
+
+.edit-buttons {
+  display: flex;
 }
 
 

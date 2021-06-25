@@ -14,15 +14,17 @@ function newElements (req, res){
   };
 
 async function create (req, res){
-    const newEntry = new Entry(req.body);
-    newEntry.image.url = req.file.path;
-    newEntry.image.imageName = req.file.filename;
-    console.log('Do we have', req.user);
-    newEntry.objectIdReference = req.user.id;
-    newEntry.author = req.user.name;
-    await newEntry.save();
-    console.log('After I create the new Entry', newEntry);
-    res.redirect('/entries'); 
+    try {
+        const newEntry = new Entry(req.body);
+        newEntry.image.url = req.file.path;
+        newEntry.image.imageName = req.file.filename;
+        newEntry.objectIdReference = req.user.id;
+        newEntry.author = req.user.name;
+        await newEntry.save();
+        res.redirect('/entries');
+    } catch(err) {
+        res.send('Your form is missing some information, be sure to fill out all the fields. Click back');
+    } 
 };
   
 async function edit (req, res){
@@ -31,20 +33,22 @@ async function edit (req, res){
 };
 
 async function update (req, res){
-    console.log('In update entry, do you see', req.user);
-    const updatedEntry = await Entry.findById(req.params.id);
-    updatedEntry.image.url = req.file.path;
-    updatedEntry.image.filename = req.file.imageName;
-    updatedEntry.date = req.body.date;
-    updatedEntry.entry = req.body.entry;
-    updatedEntry.title = req.body.title;
-    updatedEntry.mood = req.body.mood;
-    await updatedEntry.save();
-    res.redirect('/entries');
+    try {
+        const updatedEntry = await Entry.findById(req.params.id);
+        updatedEntry.image.url = req.file.path;
+        updatedEntry.image.filename = req.file.imageName;
+        updatedEntry.date = req.body.date;
+        updatedEntry.entry = req.body.entry;
+        updatedEntry.title = req.body.title;
+        updatedEntry.mood = req.body.mood;
+        await updatedEntry.save();
+        res.redirect('/entries');
+    } catch(err) {
+        res.send('Your form is missing some information, be sure to fill out all the fields. Click back');
+    }
   };
 
 async function deleteEntry (req, res){
-    console.log('In delete entry, do you see', req.user);
     await Entry.findByIdAndDelete(req.params.id);
     res.redirect('/entries');
 };

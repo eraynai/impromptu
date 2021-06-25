@@ -6,6 +6,7 @@ var session = require('express-session');
 const passport = require('passport');
 var createError = require('http-errors');
 const methodOverride = require('method-override');
+const flash = require('req-flash');
 
 // load the env vars
 require('dotenv').config();
@@ -42,6 +43,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 // Mount all routes with appropriate base paths
 app.use('/profile', profileRouter);
