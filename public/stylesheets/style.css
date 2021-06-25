@@ -61,7 +61,7 @@ p.subtitle.homepage {
 }
 
 
-section.section.is-medium.profile-page {
+section.section.is-small.profile-page {
 background: #F4AD4F;
 height: 100vh;
 }
@@ -139,6 +139,13 @@ figure.image{
 .edit-buttons {
   display: flex;
 }
+
+.title.profile-page, .subtitle.profile-page {
+  text-align: center;
+  color: #ffffff;
+  padding: 1rem;
+}
+
 
 
 

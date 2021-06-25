@@ -19,6 +19,9 @@
           <a href="/auth/logout" class="link is-info">Log Out</a>
         </p>
     </nav>
+    <div class="edit-buttons new">
+        <a class="button is-link" href="/entries/<%= entry._id %>">Back</a>
+    </div>
     <form action="/entries/<%= entry._id %>?_method=PUT" method="POST" enctype="multipart/form-data"> 
         <section class="container is-fluid">
             <form action="/entries" method="POST" enctype="multipart/form-data">

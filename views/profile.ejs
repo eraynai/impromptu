@@ -13,13 +13,19 @@
             impromptu
         </p>
         <p class="level-item has-text-centered">
+            <a href="/profile" class="link is-info">Profile</a>
+        </p>
+        <p class="level-item has-text-centered">
           <a href="/auth/logout" class="link is-info">Log Out</a>
         </p>
     </nav>
-    <section class="section is-medium profile-page">
-        <h1 class="title">Welcome <%= user.givenName %>! We are very happy to see you</h1>
-        <h2 class="subtitle">
-            Start off your journey with by creating a new entry or reading other people's entries to get some inspiration.
+    <section class="section is-small profile-page">
+        <h1 class="title profile-page">Welcome <%= user.givenName %>! We are very happy to see you</h1>
+        <h2 class="subtitle profile-page">
+            impromptu is a place to share your thoughts and feelings about learning a new skill.
+        </h2>
+        <h2 class="subtitle profile-page">
+            It was created to help people reflect on their learning journey and stay motivated to keep learning.
         </h2>
         <div class="tile is-ancestor">
             <div class="tile is-vertical">
