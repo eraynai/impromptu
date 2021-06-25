@@ -21,6 +21,25 @@
         <h2 class="subtitle">
             Start off your journey with by creating a new entry or reading other people's entries to get some inspiration.
         </h2>
+        <div class="tile is-ancestor">
+            <div class="tile is-vertical">
+                <div class="tile">
+                    <% for(let entries of entry ) { %>
+                    <div class="tile is-parent is-vertical">
+                        <article class="tile is-child notification is-warning">
+                            <p class="subtitle"><%= entries.createdAt.toLocaleDateString()%></p>
+                            <p class="title"><%= entries.title %></p>
+                            <p class="subtitle">By: <%= entries.author %></p>
+                            <figure class="image">
+                                <img src="<%= entries.image.url %>">
+                            </figure>
+                            <p class="subtitle read"><a href="/entries/<%= entries._id %>">Click to Read</a></p>
+                        </article>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
         <div class="buttons">
             <a href="/entries/new" class="button is-link is-medium is-rounded is-outlined">Create New Entry</a>
             <a href="/entries" class="button is-link is-medium is-rounded is-outlined">Read Other Entries</a>

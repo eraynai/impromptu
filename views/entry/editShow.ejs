@@ -13,10 +13,12 @@
             impromptu
         </p>
         <p class="level-item has-text-centered">
+            <a href="/profile" class="link is-info">Profile</a>
+        </p>
+        <p class="level-item has-text-centered">
           <a href="/auth/logout" class="link is-info">Log Out</a>
         </p>
     </nav>
-    
     <div class="container is-fluid">
         <div class="edit-buttons">
             <a class="button is-link" href="/entries">Back</a>
@@ -30,8 +32,8 @@
                 
                 <div class="entryContent">
                     <h2><%= entry.createdAt.toLocaleDateString()%></h2>
-                    <h2>How are you feeling?: <%= entry.mood %></h2>
-                    <h2>What's the Title of this Entry: <%= entry.title %></h2>
+                    <h2>How are you feeling? <%= entry.mood %></h2>
+                    <h2>What's the Title of this Entry - <%= entry.title %></h2>
                     <br>
                     <br>
                     <p><%= entry.entry %></p>

@@ -8,18 +8,34 @@
     <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
-    <div class="container is-fluid">
-        <div class="notification is-primary">
-          This container is <strong>fluid</strong>: it will have a 32px gap on either side, on any
-          viewport size.
+  <nav class="level">
+    <p class="level-item has-text-centered title-nav">
+        impromptu
+    </p>
+    <p class="level-item has-text-centered">
+        <a href="/profile" class="link is-info">Profile</a>
+    </p>
+    <p class="level-item has-text-centered">
+      <a href="/auth/logout" class="link is-info">Log Out</a>
+    </p>
+  </nav>
+  <div class="container is-fluid">
+    <div class="edit-buttons">
+        <a class="button is-link" href="/entries">Back</a>
+    </div>
+    <div class="notification">
+        <div class="postLayout">
+            <div class="entryContent">
+                <h2><%= entry.createdAt.toLocaleDateString()%></h2>
+                <h2>How are you feeling? <%= entry.mood %></h2>
+                <h2>What's the Title of this Entry - <%= entry.title %></h2>
+                <br>
+                <br>
+                <p><%= entry.entry %></p>
+            </div>
+            <img src="<%= entry.image.url %>">
         </div>
-      </div>
-    <form>
-        <h2><%= entry.mood %></h2>
-        <h2><%= entry.title %></h2>
-        <h2><%= entry.entry %></h2>
-    </form>
-    <img src="<%= entry.image.url %>">
-    <a href="/entries">Back</a>
+    </div>
+</div>
 </body>
 </html>

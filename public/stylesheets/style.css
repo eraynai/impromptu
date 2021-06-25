@@ -98,6 +98,11 @@ p.subtitle.read {
   padding: 1rem 0 1rem 0;
 }
 
+.edit-buttons.new {
+
+   padding: 0 0 1rem 1rem;
+}
+
 .edit-buttons a {
   margin-right: 1rem;
 }
