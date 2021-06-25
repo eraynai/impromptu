@@ -4,6 +4,12 @@
 
 Impromptu is a web application where users can document their daily feelings.  This app is helpful for people to reflect on things that may ultimately help them to make better decisions in their life. When users log in they have the ability to create or comment on other people's posts.
 
+## Screenshots of The App
+
+![](process-images/screenshot_1.png)
+![](process-images/screenshot_2.png)
+![](process-images/screenshot_3.png)
+
 ## Trello Board
 
 [Link to To Trello Board](https://trello.com/b/q4N2t8xR/build-app)
